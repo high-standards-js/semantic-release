@@ -1,22 +1,25 @@
 const base = require('@high-standards-js/base');
-const fs = require('fs');
-const path = require('path');
 
-(async() => {
-    await base.checkAcceptedHighStandards();
-
-    let packageJson = base.getInitiatingProjectPackageJson();
-    
-    const releaseRcPath = path.join(
-        base.getProjectRoot(),
-        '.releaserc'
+function addPluginConfig(config) {
+    const config = JSON.parse(
+        base.getFile('.releaserc', true, '{ "plugins": [] }')
     );
 
-    if (!fs.existsSync(releaseRcPath)) {
-        base.copyFileFromTemplate(__dirname, '.releaserc');
+    if (!configExisting(config)) {
+        config.plugins.push(config)
     }
-    
-    packageJson = await base.addDevDependency(packageJson, '@semantic-release/commit-analyzer');
-    packageJson = await base.addDevDependency(packageJson, '@semantic-release/release-notes-generator');
-    base.writeInitiatingProjectPackageJson(packageJson);
-})();
+    base.writeFile(
+        '.releaserc',
+        JSON.stringify(config, null, 2)
+    );
+}
+
+function configExisting(config, key) {
+    return config.plugins.find((configSet) => {
+        return configSet[0] === key;
+    })
+}
+
+module.exports = {
+    addPluginConfig
+}

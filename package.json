@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "postinstall": "node src/index.js"
+    "postinstall": "node src/postinstall.js"
   },
   "license": "ISC",
   "dependencies": {
