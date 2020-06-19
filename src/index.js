@@ -1,16 +1,16 @@
 const base = require('@high-standards-js/base');
 
 function addPluginConfig(config) {
-    const config = JSON.parse(
+    const releaseRcObject = JSON.parse(
         base.getFile('.releaserc', true, '{ "plugins": [] }')
     );
 
     if (!configExisting(config)) {
-        config.plugins.push(config)
+        releaseRcObject.plugins.push(config)
     }
     base.writeFile(
         '.releaserc',
-        JSON.stringify(config, null, 2)
+        JSON.stringify(releaseRcObject, null, 2)
     );
 }
 
