@@ -8,8 +8,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@high-standards-js/base": "^1.5.1",
-    "@high-standards-js/commitlint": "^1.0.3",
+    "@high-standards-js/base": "^1.7.7",
+    "@high-standards-js/commitlint": "^1.0.4",
     "husky": "4.2.5"
   },
   "devDependencies": {
@@ -20,14 +20,18 @@
     "@semantic-release/release-notes-generator": "9.0.1",
     "commitlint": "8.3.5",
     "husky": "4.2.5",
-    "semantic-release": "17.0.8"
+    "semantic-release": "17.0.8",
+    "git-authors-cli": "1.0.27",
+    "lint-staged": "10.2.11",
+    "prettier": "2.0.5"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
     }
   },
   "engines": {
@@ -35,5 +39,11 @@
   },
   "contributors": [
     "emi190396 <emily.lorenz@oliverlorenz.com>"
-  ]
+  ],
+  "lint-staged": {
+    "*.{ts,js,json,css,yaml}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
