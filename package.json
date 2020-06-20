@@ -9,11 +9,11 @@
   "license": "ISC",
   "dependencies": {
     "@high-standards-js/base": "^1.5.1",
+    "@high-standards-js/commitlint": "^1.0.3",
     "husky": "4.2.5"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "8.3.4",
-    "@high-standards-js/commitlint": "^1.0.3",
     "@semantic-release/commit-analyzer": "8.0.1",
     "@semantic-release/github": "7.0.7",
     "@semantic-release/npm": "7.0.5",
