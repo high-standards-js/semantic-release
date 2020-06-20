@@ -5,7 +5,7 @@ function addPluginConfig(config) {
         base.getFile('.releaserc', true, '{ "plugins": [] }')
     );
 
-    if (!configExisting(config)) {
+    if (!configExisting(releaseRcObject, config)) {
         releaseRcObject.plugins.push(config)
     }
     base.writeFile(
@@ -14,9 +14,9 @@ function addPluginConfig(config) {
     );
 }
 
-function configExisting(config, key) {
-    return config.plugins.find((configSet) => {
-        return configSet[0] === key;
+function configExisting(releaseRcObject, config) {
+    return !!releaseRcObject.plugins.find((configSet) => {
+        return configSet[0] === config[0];
     })
 }
 
